@@ -1,13 +1,15 @@
+// 问答工具
 const inquirer = require('inquirer');
+const donwlaodFn = require('./downlaod');
 
-const createApp = (projectName, args) => {
-  // console.log(projectName, args);
-  inquirer.prompt([
+const createApp = async (projectName, args) => {
+  console.log(projectName, args);
+  const answer = await inquirer.prompt([
     // {
     //   type:'input',
-    //   name: 'username',
-    //   message: '你的名字'
-    // }
+    //   name: 'projectName',
+    //   message: '项目名称'
+    // },
     {
       type: 'list',
       name: 'framwork',
@@ -15,9 +17,10 @@ const createApp = (projectName, args) => {
       message: '请选择你想用的框架'
     }
   ])
-    .then(answer => {
-      console.log(answer);
-    })
+
+  console.log(answer)
+  const url = `direct:https://gitee.com/maoziwocao/webpack-learn.git`
+  donwlaodFn(url, projectName)
 }
 
 module.exports = {
